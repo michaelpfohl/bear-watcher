@@ -1,18 +1,14 @@
+import { makeBearCards } from '../components/river.js'
+
 const bears = [];
 
 const createForm = () => {
     $('#bearForm').html(
-        `<form id="bearForm">
-        <div class="form-group">
-          <label for="bearName">Bear Name</label>
-          <input type="text" class="form-control" id="bearName" placeholder="Enter bear name">
-        </div>
-        <div class="form-group">
-          <label for="bearImage">Bear Image</label>
-          <input type="url" class="form-control" id="bearImage" placeholder="Enter URL of image of bear">
-        </div>
-        <button type="submit" id="submitBear"class="btn btn-primary">Submit</button>
-      </form>`
+        `<input id="bearName" class="form-control form-control-lg" type="text" placeholder="Input Bear Name">
+        <input id="bearImage" class="form-control form-control-lg mt-3" type="text" placeholder="Input Bear Image URL">
+        <div class="d-flex justify-content-center">
+          <button type="button" id="submitBear" class="btn btn-primary btn-lg mt-3">Submit</button>
+        </div>`
         )    
 }
 
@@ -22,8 +18,14 @@ const submitButtonEvents = () => {
     bearInfo.name = $('#bearName').val();
     bearInfo.image = $('#bearImage').val();
     bears.push(bearInfo);
-    console.log(bears);
+    clearForm();
+    makeBearCards(bears);
   });
+}
+
+const clearForm = () => {
+  $('#bearName').val('');
+  $('#bearImage').val('');
 }
 
 export { createForm, submitButtonEvents }
