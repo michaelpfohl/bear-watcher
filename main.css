@@ -21,3 +21,9 @@ body {
 .btn-primary:hover {
     background: #997255;
 }
+
+.bear--card {
+    background: #3a3235;
+    color: #EEBE91;
+    text-align: center;
+}
