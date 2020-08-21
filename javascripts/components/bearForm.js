@@ -17,12 +17,13 @@ const createForm = () => {
 }
 
 const submitButtonEvents = () => {
-  $('#submitBear').on('click', () => {
+  $('#submitBear').click( () => {
     let bearInfo = {};
     bearInfo.name = $('#bearName').val();
     bearInfo.image = $('#bearImage').val();
     bears.push(bearInfo);
-  })
+    console.log(bears);
+  });
 }
 
 export { createForm, submitButtonEvents }
