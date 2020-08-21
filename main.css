@@ -1,3 +1,24 @@
 body {
-    background: lavender;
+    background: #66AFA7;
+    color: #3a3235;
 }
+
+.page--header {
+    height: 100px;
+    background: #3a3235;
+}
+
+.page--title {
+    color: #66AFA7;
+    line-height: 80px;
+}
+
+.btn-primary {
+    background:#3a3235;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #997255;
+}
+
