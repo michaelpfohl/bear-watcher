@@ -1,6 +1,8 @@
+const bears = [];
+
 const createForm = () => {
     $('#bearForm').html(
-        `<form>
+        `<form id="bearForm">
         <div class="form-group">
           <label for="bearName">Bear Name</label>
           <input type="text" class="form-control" id="bearName" placeholder="Enter bear name">
@@ -9,9 +11,19 @@ const createForm = () => {
           <label for="bearImage">Bear Image</label>
           <input type="url" class="form-control" id="bearImage" placeholder="Enter URL of image of bear">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="submitBear"class="btn btn-primary">Submit</button>
       </form>`
         )    
 }
 
-export { createForm }
+const submitButtonEvents = () => {
+  $('#submitBear').click( () => {
+    let bearInfo = {};
+    bearInfo.name = $('#bearName').val();
+    bearInfo.image = $('#bearImage').val();
+    bears.push(bearInfo);
+    console.log(bears);
+  });
+}
+
+export { createForm, submitButtonEvents }
