@@ -1,4 +1,4 @@
-const attemptsAndCatches = [];
+const catches = [];
 
 const makeBearCards = (arr) => {
     $('#bearCards').html('');
@@ -12,7 +12,7 @@ const makeBearCards = (arr) => {
                 <button type="button" id="attempt-${index}" class="btn inner--button btn-lg mt-3">Attempt</button>
                 <button type="button" id="catch-${index}" class="btn inner--button btn-lg mt-3">Catch</button>
               </div>
-              <div id="attemptsAndCatchesContainer-${index}"></div>
+              <div id="attemptsAndCatchesContainer-${index}" class="mt-3"></div>
             </div>
           </div>`
         )
@@ -26,12 +26,26 @@ const attemptButtonClick = (arr) => {
             let attemptInfo = {};
             attemptInfo.timeStamp = Date();
             attemptInfo.type = 'Attempt';
-            attemptInfo.bearNumber = index;
-            attemptsAndCatches.push(attemptInfo);
-            console.log(attemptInfo);
             $(`#attemptsAndCatchesContainer-${index}`).append(
-                `<div>
-                    <div>Attempt: ${attemptInfo.timeStamp}</div>
+                `<div class="${attemptInfo.type} m-2">
+                    <div>${attemptInfo.type}: ${attemptInfo.timeStamp}</div>
+                </div>`
+            )
+        })
+    })
+}
+
+const catchButtonClick = (arr) => {
+    arr.forEach((bear, index) => {
+        $(`#catch-${index}`).click(() => {
+            let catchInfo = {};
+            catchInfo.timeStamp = Date();
+            catchInfo.type = 'Catch';
+            catchInfo.bearNumber = index;
+            catches.push(catchInfo);
+            $(`#attemptsAndCatchesContainer-${index}`).append(
+                `<div class="${catchInfo.type} m-2">
+                    <div>${catchInfo.type}: ${catchInfo.timeStamp}</div>
                 </div>`
             )
         })
@@ -40,6 +54,7 @@ const attemptButtonClick = (arr) => {
 
 const catchAttemptButtonEvents = (arr) => {
     attemptButtonClick(arr);
+    catchButtonClick(arr);
 }
 
 export { makeBearCards }
