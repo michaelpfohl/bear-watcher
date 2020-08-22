@@ -35,3 +35,11 @@ body {
 .inner--button:hover {
     background: #EEBE91;
 }
+
+.Attempt {
+    background: #fffcab; 
+}
+
+.Catch {
+    background: #abffac;
+}
