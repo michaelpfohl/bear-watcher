@@ -3,6 +3,11 @@ body {
     color: #3a3235;
 }
 
+.error {
+    color: red;
+    margin: auto;
+}
+
 .page--header {
     height: 100px;
     background: #3a3235;
