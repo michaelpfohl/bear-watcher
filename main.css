@@ -24,6 +24,14 @@ body {
 
 .bear--card {
     background: #3a3235;
-    color: #EEBE91;
+    color: #997255;
     text-align: center;
+}
+
+.inner--button {
+    background: #997255;
+}
+
+.inner--button:hover {
+    background: #EEBE91;
 }
