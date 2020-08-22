@@ -45,3 +45,4 @@ const timestampPrinter = (item, index) => {
 };
 
 export { makeBearCards }
+
