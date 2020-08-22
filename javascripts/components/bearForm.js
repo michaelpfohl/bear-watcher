@@ -14,12 +14,19 @@ const createForm = () => {
 
 const submitButtonEvents = () => {
   $('#submitBear').click( () => {
-    let bearInfo = {};
-    bearInfo.name = $('#bearName').val();
-    bearInfo.image = $('#bearImage').val();
-    bears.push(bearInfo);
-    clearForm();
-    makeBearCards(bears);
+    if ($('bearName').val() !== '' && $('#bearImage').val() !== ''){
+      let bearInfo = {};
+      bearInfo.name = $('#bearName').val();
+      bearInfo.image = $('#bearImage').val();
+      bearInfo.fishCaught = 0;
+      bearInfo.timestamps = [];
+      bears.push(bearInfo);
+      clearForm();
+      makeBearCards(bears);
+    } else {
+      alert("Enter bear name and image!")
+    }
+    
   });
 }
 

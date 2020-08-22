@@ -1,72 +1,47 @@
-const catches = [];
-
-const makeBearCards = (arr) => {
+const makeBearCards = (array) => {
     $('#bearCards').html('');
-    arr.forEach((bear, index) => {
+    array.forEach((item, index) => {
         $('#bearCards').append(
             `<div class="card m-3 bear--card" style="width: 30%;">
-            <img class="card-img-top" src="${bear.image}" alt="${bear.name}">
+            <img class="card-img-top" src="${item.image}" alt="${item.name}">
             <div class="card-body">
-              <h5 class="card-title">${bear.name}</h5>
+              <h5 class="card-title">${item.name}</h5>
               <div class="d-flex justify-content-around">
                 <button type="button" id="attempt-${index}" class="btn inner--button btn-lg mt-3">Attempt</button>
                 <button type="button" id="catch-${index}" class="btn inner--button btn-lg mt-3">Catch</button>
               </div>
               <div id="attemptsAndCatchesContainer-${index}" class="mt-3"></div>
-              <div id="catchCounter-${index}" class="catch--counter">Fish Caught: 0</div> 
+              <div id="catchCounter-${index}" class="catch--counter mx-2">Fish Caught: ${item.fishCaught}</div> 
             </div>
-          </div>`
-        )
-    })
-    catchAttemptButtonEvents(arr);
-}
+          </div>`)
+        totalCatches(index, item, array);
+		attemptsAndCatchesButtons(index, item, array);
+		timestampPrinter(item, index);
+    });
+};
 
-const attemptButtonClick = (arr) => {
-    arr.forEach((bear, index) => {
-        $(`#attempt-${index}`).click(() => {
-            let attemptInfo = {};
-            attemptInfo.timeStamp = Date();
-            attemptInfo.type = 'Attempt';
-            $(`#attemptsAndCatchesContainer-${index}`).append(
-                `<div class="${attemptInfo.type} m-2">
-                    <div>${attemptInfo.type}: ${attemptInfo.timeStamp}</div>
-                </div>`
-            )
-        })
-    })
-}
+const totalCatches = (index, item, array) => {
+	$(`#catch-${index}`).on('click', () => {
+		item.fishCaught += 1;
+		makeBearCards(array);
+	});
+};
 
-const catchButtonClick = (arr) => {
-    arr.forEach((bear, index) => {
-        $(`#catch-${index}`).click(() => {
-            let catchInfo = {};
-            catchInfo.timeStamp = Date();
-            catchInfo.type = 'Catch';
-            catchInfo.bearNumber = index;
-            catches.push(catchInfo);
-            $(`#attemptsAndCatchesContainer-${index}`).append(
-                `<div class="${catchInfo.type} m-2">
-                    <div>${catchInfo.type}: ${catchInfo.timeStamp}</div>
-                </div>`
-            )
-        catchCounter(catches);
-        })
+const attemptsAndCatchesButtons = (index, item, array) => {
+    $(`#attempt-${index}`).on('click', () => {
+        item.timestamps.push(`<div class="Attempt p-1 m-2">Attempt: ${Date()}</div>`)
+        makeBearCards(array)
     })
-}
+    $(`#catch-${index}`).on('click', () => {
+        item.timestamps.push(`<div class="Catch p-1 m-2">Catch: ${Date()}</div>`)
+        makeBearCards(array)
+    });
+};
 
-const catchCounter = (arr) => {
-    arr.forEach((x, index) => {
-        let individualCatches = arr.filter(bear => bear.bearNumber === index);
-        console.log(individualCatches);
-        $(`#catchCounter-${index}`).html(
-            `Fish Caught: ${individualCatches.length}`
-        )
-    })
-}
-
-const catchAttemptButtonEvents = (arr) => {
-    attemptButtonClick(arr);
-    catchButtonClick(arr);;
-}
+const timestampPrinter = (item, index) => {
+    item.timestamps.forEach((timestampItem) => {
+        $(`#attemptsAndCatchesContainer-${index}`).append(timestampItem)
+    });
+};
 
 export { makeBearCards }
