@@ -13,6 +13,7 @@ const makeBearCards = (arr) => {
                 <button type="button" id="catch-${index}" class="btn inner--button btn-lg mt-3">Catch</button>
               </div>
               <div id="attemptsAndCatchesContainer-${index}" class="mt-3"></div>
+              <div id="catchCounter-${index}" class="catch--counter">Fish Caught: 0</div> 
             </div>
           </div>`
         )
@@ -48,13 +49,24 @@ const catchButtonClick = (arr) => {
                     <div>${catchInfo.type}: ${catchInfo.timeStamp}</div>
                 </div>`
             )
+        catchCounter(catches);
         })
+    })
+}
+
+const catchCounter = (arr) => {
+    arr.forEach((x, index) => {
+        let individualCatches = arr.filter(bear => bear.bearNumber === index);
+        console.log(individualCatches);
+        $(`#catchCounter-${index}`).html(
+            `Fish Caught: ${individualCatches.length}`
+        )
     })
 }
 
 const catchAttemptButtonEvents = (arr) => {
     attemptButtonClick(arr);
-    catchButtonClick(arr);
+    catchButtonClick(arr);;
 }
 
 export { makeBearCards }

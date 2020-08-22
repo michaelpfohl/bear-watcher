@@ -43,3 +43,8 @@ body {
 .Catch {
     background: #abffac;
 }
+
+.catch--counter {
+    background: #997255;
+    color: #3a3235;
+}
