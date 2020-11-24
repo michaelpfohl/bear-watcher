@@ -17,7 +17,7 @@ const createForm = () => {
 
 const submitButtonEvents = () => {
   $('#submitBear').click( () => {
-    if ($('bearName').val() !== '' && $('#bearImage').val() !== ''){
+    if ($('#bearName').val() !== '' && $('#bearImage').val() !== ''){
       let bearInfo = {};
       bearInfo.name = $('#bearName').val();
       bearInfo.image = $('#bearImage').val();
